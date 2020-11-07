@@ -10,6 +10,7 @@ public class PlayerBehavior_Script : MonoBehaviour
     public float HorizontalForce;
     public float VerticalForce;
     public bool isGrounded;
+    public Transform SpawnPoint;
 
     private Rigidbody2D _rigidBody2d;
     private SpriteRenderer _SpriteRenderer;
@@ -64,5 +65,12 @@ public class PlayerBehavior_Script : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         isGrounded = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {//respawn
+        if(collision.gameObject.CompareTag("DeathPlane"))
+        transform.position = SpawnPoint.position;
+
     }
 }
